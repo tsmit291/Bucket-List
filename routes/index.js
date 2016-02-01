@@ -12,8 +12,34 @@ router.get('/bucketlists', function(req, res, next){
 });
 
 /* GET personal bucket list page */
-router.get('/bucketlists/:id', function(req, res, next){
-  
-})
+router.get('/bucketlists/:userId', function(req, res, next){
+  res.render('show');
+});
+
+/* CREATE personal bucket list item */
+router.get('/bucketlists/:userId/new', function(req, res, next){
+  res.render('new');
+});
+
+/* POST new personal bucket list item */
+router.post('/bucketlists/:userId', function(req, res, next){
+  res.redirect('/show');
+});
+
+/* EDIT personal bucket list item */
+router.get('/bucketlists/:userId/edit/:id', function(req, res, next){
+  res.render('edit');
+});
+
+/* POST edits of personal bucket list items */
+router.post('/bucketlists/:userId', function(req, res, next){
+  res.redirect('/show');
+});
+
+/* DELETE a specific bucket list item */
+router.post('/bucketlists/:userId/delete/:id', function(req, res, next){
+  res.redirect('/show');
+});
+
 
 module.exports = router;
