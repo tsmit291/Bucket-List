@@ -23,7 +23,7 @@ router.get('/bucketlists/:userId/new', function(req, res, next){
 
 /* POST new personal bucket list item */
 router.post('/bucketlists/:userId', function(req, res, next){
-  res.redirect('/show');
+  res.redirect('/bucketlists/'+req.params.userId);
 });
 
 /* EDIT personal bucket list item */
@@ -33,12 +33,12 @@ router.get('/bucketlists/:userId/edit/:id', function(req, res, next){
 
 /* POST edits of personal bucket list items */
 router.post('/bucketlists/:userId', function(req, res, next){
-  res.redirect('/show');
+  res.redirect('/bucketlists/'+req.params.userId);
 });
 
 /* DELETE a specific bucket list item */
 router.post('/bucketlists/:userId/delete/:id', function(req, res, next){
-  res.redirect('/show');
+  res.redirect('/bucketlists/'+req.params.userId);
 });
 
 
