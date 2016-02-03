@@ -1,6 +1,6 @@
 require('dotenv').config()
 var express = require('express');
-var knex = require('knex');
+var knex = require('./db/knex');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -14,11 +14,8 @@ var session = require('cookie-session');
 var passport = require('passport')
 var FacebookStrategy = require('passport-facebook').Strategy;
 
-function User (){
-  return knex({
-    client: 'pg',
-    connection: 'postgres://localhost/bucketlist'
-  })('users');
+function User(){
+  return knex('users')
 };
 
 // view engine setup
@@ -31,27 +28,24 @@ app.use(passport.session());
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: process.env.HOST+'/auth/facebook/callback'
+    callbackURL: process.env.HOST + '/auth/facebook/callback'
     // don't forget to config your heroku HOST environment variable
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log("***PROFILE**");
-    console.log(profile);
-    process.nextTick(function () {
-      User().where('fb_id', profile.id).first().then(function (user) {
-        if(user){
-          req.session.user = profile.id;
-        // set user session
-        } else {
-          User().insert({fb_id: profile.id});
-          console.log(fb_id);
-          // insert into database
-        }
-      })
-    })
-    done(null, profile);
+    User().where('fb_id', profile.id).first().then(function(user){
+      if(user) {
+        done(null, profile);
+      } else {
+        User().insert({
+          fb_id: profile.id,
+          display_name: profile.displayName
+        },'id').then(function(user){
+          done(null, profile)
+        })
+      }
+    });
   }
-));
+))
 
 passport.serializeUser(function(user, done){
   done(null, user.id);
