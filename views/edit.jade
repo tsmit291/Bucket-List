@@ -1,4 +1,14 @@
 extends layout
 
 block content
-  p Here we can edit a specific bucket list item.
+  header New List Item
+  img(src='#{user.picture}')
+  form(method='post', action='/bucketlists')
+    label(for='name') Name:
+    input(type='text', name='name', value='#{user.display_name}') 
+    label(for='bio') Bio:
+    textarea(name='bio')
+    label(for='picture') Change Picture:
+    input(type='text', name='picture', placeholder='Enter URL of another picture.')
+    input(type='submit', name='submit', value='submit')
+    input(type='submit', name='cancel', value='cancel')
