@@ -16,9 +16,19 @@ router.get('/bucketlists/:userId', function(req, res, next){
   res.render('show');
 });
 
+//NEW//render main edit page
+router.get('/bucketlists/:userId/edit', function(req,res,next){
+  res.render('edit')
+})
+
+//NEW//POST updated info
+router.post('/bucketlists/:userId', function(req,res,next){
+  res.redirect('/bucketlists')
+})
+
 /* CREATE personal bucket list item */
 router.get('/bucketlists/:userId/new', function(req, res, next){
-  res.render('new');
+  res.render('bucketlist/new');
 });
 
 /* POST new personal bucket list item */
@@ -28,7 +38,7 @@ router.post('/bucketlists/:userId', function(req, res, next){
 
 /* EDIT personal bucket list item */
 router.get('/bucketlists/:userId/edit/:id', function(req, res, next){
-  res.render('edit');
+  res.render('bucketlists/edit');
 });
 
 /* POST edits of personal bucket list items */
