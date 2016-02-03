@@ -2,7 +2,7 @@ extends ../layout
 
 block content
   header New List Item
-  form(method='post', action='/bucketlists/#{user.id}')
+  form(method='post', action='/bucketlists/#{userId}/items')
     label(for='title') Title
     input(type='text', name='title') 
     br
@@ -16,22 +16,20 @@ block content
       p Resources
         ul
           li
-            label(for='resource1') Title:
-            input(type='text', name='resource1')
-            label(for='resourceUrl1') Url:
-            input(type='text', name='resourceUrl1')
+            label(for='resourceA') Title:
+            input(type='text', name='resourceA')
+            label(for='resourceUrlA') Url:
+            input(type='text', name='resourceUrlA')
           li
-            label(for='resource1') Title:
-            input(type='text', name='resource2')
-            label(for='resourceUrl2') Url:
-            input(type='text', name='resourceUrl2')
+            label(for='resourceB') Title:
+            input(type='text', name='resourceB')
+            label(for='resourceUrlB') Url:
+            input(type='text', name='resourceUrlB')
           li
-            label(for='resource1') Title:
-            input(type='text', name='resource3')
-            label(for='resourceUrl3') Url:
-            input(type='text', name='resourceUrl3')
+            label(for='resourceC') Title:
+            input(type='text', name='resourceC')
+            label(for='resourceUrlC') Url:
+            input(type='text', name='resourceUrlC')
     br
-    label(for='tags')  Tags
-    textarea(name='tags')
     input(type='submit', name='submit', value='submit')
     input(type='submit', name='cancel', value='cancel')

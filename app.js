@@ -14,7 +14,7 @@ var session = require('cookie-session');
 var passport = require('passport')
 var FacebookStrategy = require('passport-facebook').Strategy;
 
-function User(){
+function Users(){
   return knex('users')
 };
 
@@ -32,11 +32,11 @@ passport.use(new FacebookStrategy({
     // don't forget to config your heroku HOST environment variable
   },
   function(accessToken, refreshToken, profile, done) {
-    User().where('fb_id', profile.id).first().then(function(user){
+    Users().where('fb_id', profile.id).first().then(function(user){
       if(user) {
         done(null, profile);
       } else {
-        User().insert({
+        Users().insert({
           fb_id: profile.id,
           display_name: profile.displayName
         },'id').then(function(user){
@@ -52,7 +52,7 @@ passport.serializeUser(function(user, done){
 });
 
 passport.deserializeUser(function(id, done){
-  User.findById(id, function(err, user){
+  Users().findById(id, function(err, user){
     done(null, user)
   });
 });

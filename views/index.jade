@@ -4,10 +4,9 @@ block content
   header Bucketlists
     ///search goes here///
   main
-    -for(i=0;i<20;i++)  
+    for user in users  
       div
-        p= users[i].displayn_name
-        img(src="#{users[i].picture}")
-          for item in bucketlist
-            img(src='#{item.picture}')
+        a(href= '/bucketlists/'+list.id)
+        p= user.display_name
+        img(src= user.picture)
             p= item.title
