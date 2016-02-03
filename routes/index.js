@@ -32,7 +32,7 @@ router.get('/bucketlists/:userId/edit/:id', function(req, res, next){
 });
 
 /* POST edits of personal bucket list items */
-router.post('/bucketlists/:userId', function(req, res, next){
+router.post('/bucketlists/:userId/edit/:id', function(req, res, next){
   res.redirect('/bucketlists/'+req.params.userId);
 });
 
