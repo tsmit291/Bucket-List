@@ -1,0 +1,37 @@
+extends ../layout
+
+block content
+  header New List Item
+  form(method='post', action='/bucketlists/#{user.id}')
+    label(for='title') Title
+    input(type='text', name='title') 
+    br
+    label(for='description') Description
+    textarea(name='description')
+    br
+    label(for=picture) Picture
+    input(type='text', name='picture')
+    br
+    div.resources
+      p Resources
+        ul
+          li
+            label(for='resource1') Title:
+            input(type='text', name='resource1')
+            label(for='resourceUrl1') Url:
+            input(type='text', name='resourceUrl1')
+          li
+            label(for='resource1') Title:
+            input(type='text', name='resource2')
+            label(for='resourceUrl2') Url:
+            input(type='text', name='resourceUrl2')
+          li
+            label(for='resource1') Title:
+            input(type='text', name='resource3')
+            label(for='resourceUrl3') Url:
+            input(type='text', name='resourceUrl3')
+    br
+    label(for='tags')  Tags
+    textarea(name='tags')
+    input(type='submit', name='submit', value='submit')
+    input(type='submit', name='cancel', value='cancel')

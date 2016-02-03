@@ -1,0 +1,46 @@
+extends ../layout
+
+block content
+  header Edit List Item
+  form(method='post', action='/bucketlists/#{user.id}/items/#{bucketlist.id}')
+    label(for='title') Title
+    input(type='text', name='title', value='#{bucketlist.title}') 
+    br
+    label(for='description') Description
+    textarea(name='description') #{bucketlist.description}
+    textarea(name='description') #{bucketlist.description}
+    br
+    label(for=picture) Picture
+    input(type='text', name='picture', value='#{bucketlist.picture}')
+    input(type='text', name='picture', value='#{bucketlist.picture}')
+    br
+    div.resources
+      p Resources
+        ul
+          if true
+            li
+              label(for='resource1') Title:
+              input(type='text', name='resource1', value='#{bucketlist.resource1}')
+              input(type='text', name='resource1', value='#{bucketlist.resource1}')
+              label(for='resourceUrl1') Url:
+              input(type='text', name='resourceUrl1', value='#{bucketlist.resourceUrl1}')
+              input(type='text', name='resourceUrl1', value='#{bucketlist.resourceUrl1}')
+          if true
+            li
+              label(for='resource2') Title:
+              input(type='text', name='resource2', value='#{bucketlist.resource2}')
+              input(type='text', name='resource2', value='#{bucketlist.resource2}')
+              input(type='text', name='resourceUrl2', value='#{bucketlist.resourceUrl2}')
+              input(type='text', name='resourceUrl2', value='#{bucketlist.resourceUrl2}')
+          if true
+            li
+              label(for='resource1') Title:
+              input(type='text', name='resource3', value="#{bucketlist.resource3}")
+              input(type='text', name='resource3', value="#{bucketlist.resource3}")
+              input(type='text', name='resourceUrl3', value='#{bucketlist.resourceUrl3}')
+              input(type='text', name='resourceUrl3', value='#{bucketlist.resourceUrl3}')
+    br
+    label(for='tags')  Tags
+    textarea(name='tags') #{bucketlist.tags}
+    textarea(name='tags') #{bucketlist.tags}
+    input(type='submit', name='submit', value='submit')

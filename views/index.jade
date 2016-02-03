@@ -1,5 +1,13 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to Bucket List App. Here you can see all the community bucket list items! 
+  header Bucketlists
+    ///search goes here///
+  main
+    -for(i=0;i<20;i++)  
+      div
+        p= users[i].displayn_name
+        img(src="#{users[i].picture}")
+          for item in bucketlist
+            img(src='#{item.picture}')
+            p= item.title

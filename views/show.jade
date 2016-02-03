@@ -1,4 +1,20 @@
 extends layout
 
 block content
-  p This page is where you can see a user's personal bucket list.
+  div.profile
+    header #{user.display_name}'s Bucket List
+    img(src='#{user.picture}')
+    p #{user.bio}
+  div.list
+    for item in user.bucketlist
+      h2= item.title
+      img(src= item.picture)
+      p= item.description
+      p Resources
+      ul
+        li: a(href='item.resourceUrl1') #{item.resource1}
+        li: a(href='item.resourceUrl2') #{item.resource2}
+        li: a(href='item.resourceUrl3') #{item.resource3}
+  //check if there are 10 or less items in list
+  if (user.bucketlist.length < 10)
+    a(href='bucketlists/#{user.id}/new') Add List Item 
