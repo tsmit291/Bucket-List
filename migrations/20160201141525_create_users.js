@@ -4,7 +4,11 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.string('fb_id');
     table.string('display_name');
-    table.json('lists');
+    table.boolean('auth');
+    table.string('email');
+    table.text('bio');
+    table.string('picture');
+    table.json('bucketlists');
   });
 };
 
