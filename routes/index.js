@@ -105,7 +105,13 @@ router.get('/bucketlists/:userId/items/:id/edit', function(req, res, next){
   var id = req.params.id
   var userId = req.params.userId
   Bucketlist().where('id',id).first().then(function(results){
-    res.render('bucketlist/edit', {userId:userId, bucketlist:results});
+    User().where('email', req.cookie.email).then(function(results){
+      var auth = false;
+      if (results.id === req.params.id){
+        auth = true;
+      };
+      res.render('bucketlist/edit', {userId:userId, bucketlist:results});
+    })
   })
 });
 

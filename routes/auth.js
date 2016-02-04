@@ -30,7 +30,6 @@ router.post('/login', function(req, res, next){
     if (found){
       if (bcrypt.compareSync(req.body.password, found.password)){
         res.cookie('user', req.body.email)
-        res.cookie('password', req.body.password)
         res.redirect('/bucketlists');
       } else {
         res.send('Email/Password not valid')

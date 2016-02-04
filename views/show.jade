@@ -20,7 +20,8 @@ block content
       br
       if item.resourceC
         a(href= item.resourceUrlC) #{item.resourceC}
-      a(href= '/bucketlists/#{user.id}/items/'+item.id+'/edit') Edit
-      a(href= '/bucketlists/#{user.id}/items/'+item.id+'/delete') Delete
-  -if (bucketlists.length < 10)
+      if auth
+        a(href= '/bucketlists/#{user.id}/items/'+item.id+'/edit') Edit
+        a(href= '/bucketlists/#{user.id}/items/'+item.id+'/delete') Delete
+  -if (bucketlists.length < 10 && auth)
     a(href='/bucketlists/#{user.id}/new') Add List Item 
