@@ -30,6 +30,7 @@ router.post('/login', function(req, res, next){
     if (found){
       if (bcrypt.compareSync(req.body.password, found.password)){
         res.cookie('user', req.body.email)
+        res.cookie('password', req.body.password)
         res.redirect('/bucketlists');
       } else {
         res.send('Email/Password not valid')
@@ -45,6 +46,7 @@ router.post('/signup', function(req, res, next){
   var crypted = bcrypt.hashSync(req.body.password, 8)
   User().insert({email: req.body.email, password: crypted, display_name: req.body.display_name}).then(function(result){
     res.cookie('user', req.body.email)
+    res.cookie('password', crypted)
     res.redirect('/bucketlists');
   });
 });
