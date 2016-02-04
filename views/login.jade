@@ -1,4 +1,19 @@
 extends layout
 
 block content
-  a(href='/auth/facebook') Log in with Facebook
+  div.login
+    form(name='login', method='post', action='/auth/login')
+      label Have an account? Log In Here
+        input(type='text' placeholder='email' name='email')
+        input(type='text' placeholder='password' name='password')
+        button(type='submit') Sign In
+    br
+    form(name='signup', method='post', action='/auth/signup')
+      label No account? Sign Up Here
+        input(type='text' placeholder='FName LName' name='display_name')
+        input(type='text' placeholder='email' name='email')
+        input(type='text' placeholder='password' name='password')
+        button(type='submit') Sign Up
+    p OR
+    a(href='/auth/facebook') Log in with Facebook
+      
