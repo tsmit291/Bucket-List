@@ -133,8 +133,9 @@ router.post('/bucketlists/:userId/items/:id', function(req, res, next){
 
 /* DELETE a specific bucket list item */
 router.get('/bucketlists/:userId/items/:id/delete', function(req, res, next){
+  userId = req.params.userId
   Bucketlist().where('id', req.params.id).del().then(function(results){
-    res.redirect('/bucketlists/'+user_id);
+    res.redirect('/bucketlists/'+userId);
   })
 });
 
