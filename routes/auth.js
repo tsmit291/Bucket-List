@@ -9,7 +9,7 @@ function User() {
   return knex('users')
 };
 
-/*login*/
+/*login with facebook*/
 router.get('/facebook', passport.authenticate('facebook'));
 
 /*logout*/
@@ -24,6 +24,22 @@ function (req, res, next) {
   res.redirect('/bucketlists');
 });
 
+/* log in without facebook */
+router.post('/login', function(req, res, next){
+  User().where({email:req.body.email}).first().then(function(found){
+    if (found){
+      if (bcrypt.compareSync(req.body.password, found.password)){
+        res.cookie('user', req.body.email)
+        res.redirect('/bucketlists');
+      } else {
+        res.send('Email/Password not valid')
+      }
+    } else {
+      res.send('Email/Password not valid')
+    }
+  })
+});
+
 /* sign up */
 router.post('/signup', function(req, res, next){
   var crypted = bcrypt.hashSync(req.body.password, 8)
@@ -32,6 +48,7 @@ router.post('/signup', function(req, res, next){
     res.redirect('/bucketlists');
   });
 });
+
 
 
 module.exports = router;

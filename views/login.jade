@@ -2,10 +2,11 @@ extends layout
 
 block content
   div.login
-    label Have an account? Log In Here
-      input(type='text' placeholder='email' name='email')
-      input(type='text' placeholder='password' name='password')
-      button(type='submit') Sign In
+    form(name='login', method='post', action='/auth/login')
+      label Have an account? Log In Here
+        input(type='text' placeholder='email' name='email')
+        input(type='text' placeholder='password' name='password')
+        button(type='submit') Sign In
     br
     form(name='signup', method='post', action='/auth/signup')
       label No account? Sign Up Here
