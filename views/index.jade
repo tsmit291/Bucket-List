@@ -2,12 +2,13 @@ extends layout
 
 block content
   header Bucketlists
-  form(action='/bucketlists?=asdfasdfasd', method='get')
+  form(action='/bucketlists', method='post')
     input(type='text', name='search')
   main
-    for user in users  
+      
+    for bucketlist in bucketlists  
       div
-        a(href= '/bucketlists/'+list.id)
-        p= user.display_name
-        img(src= user.picture)
+        a(href= '/bucketlists/'+bucketlist.id)
+        p= bucketlist.display_name
+        img(src= bucketlist.picture)
             p= item.title

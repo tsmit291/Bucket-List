@@ -9,16 +9,47 @@ function Bucketlist(){
   return knex('bucketlist')
 }
 
+router.get('/',function(req,res,next){
+  res.render('login')
+})
 
-/* GET home page. */
-router.get('/bucketlists', function(req, res, next) {
-  knex('users').join('bucketlist', 'users.id', '=', 'bucketlist.id').first(function(results){
+//INDEX
+router.get('/bucketlists', function(req,res){
+  var search
+  var querystring = req.query.search
+
+  if (querystring) {
+    search=querystring
+  }else{
+    search='Aubrey'
+  }
+
+  knex.raw("select users.id as users_id, bucketlist.id as bucketlist_id, users.picture as users_picture, bucketlist.picture as bucketlist_picture, bucketlist.title as bucketlist_title from users inner join bucketlist on users.id = bucketlist.user_id where display_name like  '%"+search+"%'").then(function(bucketlists){
+    var bucketlists = bucketlists.rows
+    var idsArray = []
+    bucketlists.forEach(function(e){
+      idsArray.push(e['users_id'])
+    })
+    Users().whereIn('id', idsArray).then(function(users){
+      console.log(users)
+    })
 
 
-
+  knex.raw("select user_id from bucketlist where title like '%"+search+"%'").then(function(searchUser){
+    console.log(searchUser)
   })
-  res.render('login');
-});
+
+
+
+  res.render('index', {bucketlists:bucketlists});
+  })
+})
+
+//Upon SEARCH
+router.post('/bucketlists', function(req,res,next){
+  var search = req.body.search
+  res.redirect('/bucketlists?search='+search)
+})
 
 
 /* GET personal bucket list page */
