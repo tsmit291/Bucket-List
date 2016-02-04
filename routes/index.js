@@ -11,15 +11,15 @@ function Bucketlist(){
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  knex('users').join('bucketlist',  )
+router.get('/bucketlists', function(req, res, next) {
+  knex('users').join('bucketlist', 'users.id', '=', 'bucketlist.id').first(function(results){
+
+
+
+  })
   res.render('login');
 });
 
-/* GET community index page */
-router.get('/bucketlists', function(req, res, next){
-  res.render('index');
-});
 
 /* GET personal bucket list page */
 router.get('/bucketlists/:userId', function(req, res, next){

@@ -2,7 +2,8 @@ extends layout
 
 block content
   header Bucketlists
-    ///search goes here///
+  form(action='/bucketlists?=asdfasdfasd', method='get')
+    input(type='text', name='search')
   main
     for user in users  
       div
