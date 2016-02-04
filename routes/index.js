@@ -25,8 +25,6 @@ router.get('/bucketlists', function(req,res){
   }
 
   knex.raw("select user_id, id from bucketlist where lowertitle like LOWER('%"+search+"%')").then(function(searchUsers){
-    console.log('SEARCHUSERS')
-    // console.log(searchUsers.rows)
     var users = []
     var boldItem = []
       searchUsers.rows.forEach(function(e){
@@ -37,19 +35,8 @@ router.get('/bucketlists', function(req,res){
         return arr.indexOf(curr) === idx
       })
 
-        console.log('USERS')
-        // console.log(users)
-        console.log('BOLDITEM')
-        // console.log(boldItem)
         Users().whereIn('id', users).then(function(userData){
-        console.log('USERDATA')
-        // console.log(userData)
           Bucketlist().whereIn('user_id', users).then(function(bucketlists){
-            console.log('BUCKETLISTS')
-            // console.log(bucketlists)
-            // console.log(bucketlists)
-            // console.log(userData)
-            console.log(boldItem)
             res.render('index', {bucketlists:bucketlists, userData:userData, boldItem:boldItem});
           })
         })
@@ -67,11 +54,34 @@ router.post('/bucketlists', function(req,res,next){
 router.get('/bucketlists/:userId', function(req, res, next){
   Users().where('id', req.params.userId).first().then(function(user){
     Bucketlist().where('user_id', req.params.userId).then(function(bucketlists){
-      console.log(bucketlists)
-      res.render('show', {user:user, bucketlists:bucketlists})
+      Users().where('email', req.cookies.user).first().then(function(results){
+
+        var auth = false
+        if (results.id == req.params.userId){
+          auth = true;
+        }
+
+        res.render('show', {user:user, bucketlists:bucketlists, auth:auth})
+
+      })
     })
   })
 })
+///////////////////////////////MIDDLEWARE////////////////////////////
+
+// router.use(function(req,res,next){
+//   console.log('**************')
+//   console.log(req.params.userId)
+//   Users().where('email', req.cookies.user).then(function(results){
+//     if (results.id == req.params.userId){
+//       next()
+//     }else if(!req.cookies.user){
+//       res.redirect('/')
+//     }else{
+//       res.redirect('/bucketlists/'+results.id, {notauth:true})
+//     }
+//   })
+// })
 
 //POST NEW ITEM
 router.post('/bucketlists/:userId/items', function(req,res,next){
@@ -105,13 +115,8 @@ router.get('/bucketlists/:userId/items/:id/edit', function(req, res, next){
   var id = req.params.id
   var userId = req.params.userId
   Bucketlist().where('id',id).first().then(function(results){
-    User().where('email', req.cookie.email).then(function(results){
-      var auth = false;
-      if (results.id === req.params.id){
-        auth = true;
-      };
+
       res.render('bucketlist/edit', {userId:userId, bucketlist:results});
-    })
   })
 });
 

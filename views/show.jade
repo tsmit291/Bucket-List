@@ -1,6 +1,8 @@
 extends layout
 
 block content
+  -if (notauth)  
+    p You are not authorized to do that.
   div.profile
     header #{user.display_name}'s Bucket List
     img(src= '#')
@@ -20,7 +22,7 @@ block content
       br
       if item.resourceC
         a(href= item.resourceUrlC) #{item.resourceC}
-      if auth
+      -if (auth)
         a(href= '/bucketlists/#{user.id}/items/'+item.id+'/edit') Edit
         a(href= '/bucketlists/#{user.id}/items/'+item.id+'/delete') Delete
   -if (bucketlists.length < 10 && auth)
