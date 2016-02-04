@@ -5,10 +5,17 @@ block content
   form(action='/bucketlists', method='post')
     input(type='text', name='search')
   main
-      
-    for bucketlist in bucketlists  
+    each user in userData  
       div
-        a(href= '/bucketlists/'+bucketlist.id)
-        p= bucketlist.display_name
-        img(src= bucketlist.picture)
-            p= item.title
+        p= user.display_name
+        img(src='#')
+        each bucketlist in bucketlists
+          -if (bucketlist.user_id === user.id)
+              p= bucketlist.title
+              p= bucketlist.resourceA
+              a(href=bucketlist.resourceUrlA) Resource A   
+              p= bucketlist.resourceB
+              a(href=bucketlist.resourceUrlB) Resource B
+              p= bucketlist.resourceC
+              a(href=bucketlist.resourceUrlC) Resource C
+  
