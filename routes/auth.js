@@ -27,10 +27,11 @@ function (req, res, next) {
 /* sign up */
 router.post('/signup', function(req, res, next){
   var crypted = bcrypt.hashSync(req.body.password, 8)
-  User().insert({email: req.body.email, password: crypted}).then(function(result){
+  User().insert({email: req.body.email, password: crypted, display_name: req.body.display_name}).then(function(result){
     res.cookie('user', req.body.email)
     res.redirect('/bucketlists');
   });
 });
+
 
 module.exports = router;

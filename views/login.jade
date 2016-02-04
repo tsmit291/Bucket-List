@@ -9,6 +9,7 @@ block content
     br
     form(name='signup', method='post', action='/auth/signup')
       label No account? Sign Up Here
+        input(type='text' placeholder='FName LName' name='display_name')
         input(type='text' placeholder='email' name='email')
         input(type='text' placeholder='password' name='password')
         button(type='submit') Sign Up
