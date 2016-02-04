@@ -3,8 +3,14 @@ extends layout
 block content
   header Bucketlists
     ///search goes here///
-  title Cloudlilly
+  title Cloudilly
   script(src='https://code.jquery.com/jquery-2.2.0.min.js')
   script(src='./custom.js')
   script(type='text/javascript' src='https://cdn.cloudilly.com/web.min.js')
   script(type='text/javascript' src='/custom.js')
+  
+  body
+  
+    div#chatbox
+      input#input
+      button(onclick='send()') Send

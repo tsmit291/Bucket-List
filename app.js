@@ -1,4 +1,5 @@
 require('dotenv').config()
+var SECRET = '7164ec20-debf-42b4-bad3-55912113b2cb';
 var express = require('express');
 var knex = require('./db/knex');
 var path = require('path');
@@ -60,7 +61,7 @@ passport.deserializeUser(function(id, done){
 });
 
 // cloudilly info //
-var SECRET = '7164ec20-debf-42b4-bad3-55912113b2cb';
+
 
 
 
