@@ -3,11 +3,8 @@ extends layout
 block content
   header Bucketlists
     ///search goes here///
-  main
-    -for(i=0;i<20;i++)  
-      div
-        p= users[i].displayn_name
-        img(src="#{users[i].picture}")
-          for item in bucketlist
-            img(src='#{item.picture}')
-            p= item.title
+  title Cloudlilly
+  script(src='https://code.jquery.com/jquery-2.2.0.min.js')
+  script(src='./custom.js')
+  script(type='text/javascript' src='https://cdn.cloudilly.com/web.min.js')
+  script(type='text/javascript' src='/custom.js')

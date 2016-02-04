@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth');
+// var custom = require('./custom')
 var jwt = require('jsonwebtoken');
 var app = express();
 var session = require('cookie-session');
@@ -59,7 +60,8 @@ passport.deserializeUser(function(id, done){
 });
 
 // cloudilly info //
-var SECRET = '7164ec20-debf-42b4-bad3-55912113b2cb'
+var SECRET = '7164ec20-debf-42b4-bad3-55912113b2cb';
+
 
 
 // uncomment after placing your favicon in /public
@@ -69,7 +71,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/tokens', function(req, res){
   res.end(jwt.sign({device: req.body.device}, SECRET, {expiresIn: 86400}))
-});
 });
 
 app.use(cookieParser());
