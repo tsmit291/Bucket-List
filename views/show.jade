@@ -12,11 +12,14 @@ block content
       img(src= '#')
       p= item.description
       p Resources
-      a(href= item.resourceUrlA) #{item.resourceA}
+      if item.resourceA
+        a(href= item.resourceUrlA) #{item.resourceA}
       br
-      a(href= item.resourceUrlB) #{item.resourceB}
+      if item.resourceB
+        a(href= item.resourceUrlB) #{item.resourceB}
       br
-      a(href= item.resourceUrlC) #{item.resourceC}
+      if item.resourceC
+        a(href= item.resourceUrlC) #{item.resourceC}
       a(href= '/bucketlists/#{user.id}/items/'+item.id+'/edit') Edit
       a(href= '/bucketlists/#{user.id}/items/'+item.id+'/delete') Delete
   -if (bucketlists.length < 10)
