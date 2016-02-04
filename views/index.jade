@@ -11,12 +11,15 @@ block content
         p= user.display_name
         img(src='#')
         each bucketlist in bucketlists
-          -if (bucketlist.user_id === user.id)
+          img(src='#')
+          if bucketlist.user_id === user.id
+            if boldItem.indexOf(bucketlist.id) === -1
               p= bucketlist.title
-              p= bucketlist.resourceA
-              a(href=bucketlist.resourceUrlA) Resource A   
-              p= bucketlist.resourceB
-              a(href=bucketlist.resourceUrlB) Resource B
-              p= bucketlist.resourceC
-              a(href=bucketlist.resourceUrlC) Resource C
-  
+            else
+              b= bucketlist.title  
+          p= bucketlist.resourceA
+          a(href=bucketlist.resourceUrlA) Resource A   
+          p= bucketlist.resourceB
+          a(href=bucketlist.resourceUrlB) Resource B
+          p= bucketlist.resourceC
+          a(href=bucketlist.resourceUrlC) Resource C

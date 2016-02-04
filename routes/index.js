@@ -24,18 +24,7 @@ router.get('/bucketlists', function(req,res){
     search='Hang Gliding'
   }
 
-  // knex.raw("select users.id as users_id, bucketlist.id as bucketlist_id, users.picture as users_picture, bucketlist.picture as bucketlist_picture, bucketlist.title as bucketlist_title from users inner join bucketlist on users.id = bucketlist.user_id where display_name like  '%"+search+"%'").then(function(bucketlists){
-  //   var bucketlists = bucketlists.rows
-  //   var idsArray = []
-  //   bucketlists.forEach(function(e){
-  //     idsArray.push(e['users_id'])
-  //   })
-  //   Users().whereIn('id', idsArray).then(function(users){
-  //     console.log(users)
-  //   })
-
-
-  knex.raw("select user_id, id from bucketlist where title like '%"+search+"%'").then(function(searchUsers){
+  knex.raw("select user_id, id from bucketlist where lowertitle like LOWER('%"+search+"%')").then(function(searchUsers){
     console.log('SEARCHUSERS')
     // console.log(searchUsers.rows)
     var users = []
@@ -58,9 +47,9 @@ router.get('/bucketlists', function(req,res){
           Bucketlist().whereIn('user_id', users).then(function(bucketlists){
             console.log('BUCKETLISTS')
             // console.log(bucketlists)
-            console.log(bucketlists)
+            // console.log(bucketlists)
             // console.log(userData)
-            // console.log(boldItem)
+            console.log(boldItem)
             res.render('index', {bucketlists:bucketlists, userData:userData, boldItem:boldItem});
           })
         })
@@ -86,10 +75,12 @@ router.get('/bucketlists/:userId', function(req, res, next){
 
 //POST NEW ITEM
 router.post('/bucketlists/:userId/items', function(req,res,next){
-      id = req.params.userId
+      var id = req.params.userId
+      var lowertitle = req.body.title.toLowerCase()
       Bucketlist().insert({
         user_id:id,
         title:req.body.title,
+        lowertitle: lowertitle,
         picture:req.body.picture,
         description:req.body.description,
         resourceUrlA:req.body.resourceUrlA,
@@ -122,9 +113,11 @@ router.get('/bucketlists/:userId/items/:id/edit', function(req, res, next){
 router.post('/bucketlists/:userId/items/:id', function(req, res, next){
   var userId = req.params.userId
   var id = req.params.id
+  var lowertitle = req.body.title.toLowerCase()
   Bucketlist().where('id', id).update({
     user_id: userId,
     title:req.body.title,
+    lowertitle: lowertitle,
     picture:req.body.picture,
     description:req.body.description,
     resourceUrlA:req.body.resourceUrlA,
