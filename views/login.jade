@@ -7,10 +7,11 @@ block content
       input(type='text' placeholder='password' name='password')
       button(type='submit') Sign In
     br
-    label No account? Sign Up Here
-      input(type='text' placeholder='email' name='email')
-      input(type='text' placeholder='password' name='password')
-      button(type='submit') Sign Up
+    form(name='signup', method='post', action='/auth/signup')
+      label No account? Sign Up Here
+        input(type='text' placeholder='email' name='email')
+        input(type='text' placeholder='password' name='password')
+        button(type='submit') Sign Up
     p OR
     a(href='/auth/facebook') Log in with Facebook
-    
+      
