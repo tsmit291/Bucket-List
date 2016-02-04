@@ -4,6 +4,7 @@ block content
   header Bucketlists
   form(action='/bucketlists', method='post')
     input(type='text', name='search')
+    input(type='submit', name='submit', value='submit')
   main
     each user in userData  
       div
