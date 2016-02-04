@@ -139,5 +139,4 @@ router.get('/bucketlists/:userId/items/:id/delete', function(req, res, next){
   })
 });
 
-
 module.exports = router;
