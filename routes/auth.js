@@ -15,6 +15,9 @@ router.get('/facebook', passport.authenticate('facebook'));
 /*logout*/
 router.get('/logout', function(req, res, next){
   req.session = null;
+  res.clearCookie('user')
+  res.clearCookie('password')
+  res.clearCookie('token')
   res.redirect('/');
 });
 
