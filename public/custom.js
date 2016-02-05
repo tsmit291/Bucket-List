@@ -1,5 +1,5 @@
 var app= 'com.bucketlist.app';
-var access='8f051571-b90c-4768-b550-a827827a6629';
+var access='96a14426-9ebb-4024-89da-fcc0610e8549';
 var button = document.getElementById('chatName');
 var chatName =
 button.addEventListener('click', function(){
@@ -43,16 +43,17 @@ function enterChat(chatName){
       console.log("@@@@@@ RECEIVED DEVICE");
       console.log(res);
       var other= res.device.toUpperCase();
-      chatbox.innerHTML= res.timestamp== 0 ? chatbox.innerHTML + chatName + " JOINED PUBLIC<br/>" : chatbox.innerHTML + other + " LEFT PUBLIC<br/>";
+      chatbox.innerHTML= res.timestamp== 0 ? chatbox.innerHTML + 'Someone Says:' + " JOINED PUBLIC<br/>" : chatbox.innerHTML + other + " LEFT PUBLIC<br/>";
       chatbox.scrollTop= chatbox.scrollHeight;
     });
     cloudilly.socketReceivedPost(function(res) {
       console.log("@@@@@@ RECEIVED POST");
       console.log(res);
       var other= res.device.toUpperCase();
-      chatbox.innerHTML= chatbox.innerHTML + other + ': ' + res.payload.msg + '<br/>';
+      chatbox.innerHTML= chatbox.innerHTML + 'Someone Says' + ': ' + res.payload.msg + '<br/>';
       chatbox.scrollTop= chatbox.scrollHeight;
     });
+}
   function send() {
     var input= document.getElementById("input").value; if(input== "") { return; }
     document.getElementById("input").value= ""; document.getElementById("input").focus();
@@ -63,5 +64,3 @@ function enterChat(chatName){
       console.log(res);
     });
   }
-
-}
