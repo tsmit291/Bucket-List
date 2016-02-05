@@ -28,7 +28,7 @@ block content
         .benslist
           h3 Randy Savage's list 
 
-          p this super rad thing
+          p make beef jerky
 
           p this other thing
 
@@ -61,17 +61,17 @@ block content
       .in
         form(name='login', method='post', action='/auth/login')
           h3 Sign In
-          input(type="text" placeholder="david@bowie.com" name='email')
-          input(type="text" placeholder="password" name="password")
+          input(type="text" placeholder="david@bowie.com" name='email' required)
+          input(type="password" placeholder="password" name="password" required)
           br
           input(type="submit")
       .up
         form(name='signup', method='post', action='/auth/signup')
           h3 Sign Up
-          input(type="text" placeholder="Jeff Spicoli" name="display_name")
-          input(type='text' placeholder="Add your photo!" name='picture')
-          input(type="text" placeholder="supbro@chillin.com" name="email")
-          input(type="text" placeholder="password" name="password")
+          input(type="text" placeholder="Jeff Spicoli" name="display_name" required)
+          input(type='url' placeholder="Add your photo!" name='picture' required)
+          input(type="email" placeholder="supbro@chillin.com" name="email" required)
+          input(type="password" placeholder="password" name="password" required)
           br
           input(type="submit")
     .b    

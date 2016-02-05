@@ -429,10 +429,12 @@ form textarea{
 .hero h1 {
   font-size: 5em;
   padding-top: 10%;
+  color: $medgrey;
 }
 .hero h2{
   display: block;
   font-size: 2em;
+  color: $medgrey;
 }
 
 
@@ -489,6 +491,7 @@ form textarea{
   margin: 0;
   background-color: $tomato;
   clear: both;
+  text-align: center;
 }
 .reglogin{
   width: 100vw;
