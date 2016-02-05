@@ -70,7 +70,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/tokens', function(req, res){
-  res.end(jwt.sign({device: req.body.device}, SECRET, {expiresIn: 86400}))
+  res.end(jwt.sign({device: req.body.device}, process.env.SECRET, {expiresIn: 86400}))
 });
 app.use(cookieParser());
 app.use(sass({
