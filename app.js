@@ -1,6 +1,7 @@
 require('dotenv').config()
 var express = require('express');
 var knex = require('./db/knex');
+var sass = require('node-sass-middleware')
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -63,6 +64,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(sass({
+  src: __dirname + '/sass',
+  dest: __dirname + '/public/stylesheets',
+  debug: true,
+  outputStyle: 'compressed',
+  prefix: '/stylesheets'
+}))
 app.use(express.static(path.join(__dirname, 'public')));
 
 

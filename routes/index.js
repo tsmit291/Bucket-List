@@ -37,6 +37,9 @@ router.get('/bucketlists', function(req,res){
 
         Users().whereIn('id', users).then(function(userData){
           Bucketlist().whereIn('user_id', users).then(function(bucketlists){
+            console.log(userData);
+            console.log('##################');
+            console.log(bucketlists);
             res.render('index', {bucketlists:bucketlists, userData:userData, boldItem:boldItem});
           })
         })
@@ -60,8 +63,8 @@ router.get('/bucketlists/:userId', function(req, res, next){
         if (results.id == req.params.userId){
           auth = true;
         }
-
-        res.render('show', {user:user, bucketlists:bucketlists, auth:auth})
+        var obj = bucketlists
+        res.render('show', {user:user, bucketlists:bucketlists, auth:auth, obj:obj})
 
       })
     })

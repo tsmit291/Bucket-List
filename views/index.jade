@@ -1,19 +1,56 @@
+//- extends layout
+//- 
+//- block content
+//-   header Bucketlists
+//-   form(action='/bucketlists', method='post')
+//-     input(type='text', name='search')
+//-     input(type='submit', name='submit', value='submit')
+//-   main
+//-     each user in userData  
+//-       div
+//-         p= user.display_name
+//-         img(src='#')
+//-         each bucketlist in bucketlists
+//-           img(src='#')
+//-           if bucketlist.user_id === user.id
+//-             if boldItem.indexOf(bucketlist.id) === -1
+//-               p= bucketlist.title
+//-             else
+//-               b= bucketlist.title  
 extends layout
 
 block content
-  header Bucketlists
-  form(action='/bucketlists', method='post')
-    input(type='text', name='search')
-    input(type='submit', name='submit', value='submit')
-  main
-    each user in userData  
-      div
+  
+  .topnav
+    .logo
+    .topbar
+      p
+        a(href="/auth/logout") Logout
+    .topbar
+      p
+        a(href="#") Profile
+    .topbar
+      p
+        a(href="#") New
+    .topbar
+      p
+        a(href="#") Chat
+    .topbar
+      p
+        a(href="/bucketlists") Discover
+  .search
+    h1 Discover
+    form(action='/bucketlists', method='post')
+      input(type="text" name="search" autofocus)
+      
+  .listarea
+    each user in userData
+      .eachlist
+      
         p= user.display_name
-        img(src='#')
-        each bucketlist in bucketlists
-          img(src='#')
-          if bucketlist.user_id === user.id
-            if boldItem.indexOf(bucketlist.id) === -1
-              p= bucketlist.title
-            else
-              b= bucketlist.title  
+          each bucketlist in bucketlists
+            if bucketlist.user_id === user.id
+              if boldItem.indexOf(bucketlist.id) === -1
+                p= bucketlist.title
+              else
+                b= bucketlist.title  
