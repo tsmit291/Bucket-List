@@ -1,36 +1,37 @@
 extends ../layout
 
 block content
-  header Edit List Item
-  form(method='post', action='/bucketlists/#{userId}/items/#{bucketlist.id}')
-    label(for='title') Title
-    input(type='text', name='title', value='#{bucketlist.title}') 
-    br
-    label(for='description') Description
-    textarea(name='description') #{bucketlist.description}
-    br
-    label(for=picture) Picture
-    input(type='text', name='picture', value='#{bucketlist.picture}')
-    br
-    div.resources
-      p Resources
-        ul
-          if true
-            li
-              label(for='resourceA') Title:
-              input(type='text', name='resourceA', value='#{bucketlist.resourceA}')
-              label(for='resourceUrlA') Url:
-              input(type='text', name='resourceUrlA', value='#{bucketlist.resourceUrlA}')
-          if true
-            li
-              label(for='resourceB') Title:
-              input(type='text', name='resourceB', value='#{bucketlist.resourceB}')
-              input(type='text', name='resourceUrlB', value='#{bucketlist.resourceUrlB}')
-          if true
-            li
-              label(for='resourceC') Title:
-              input(type='text', name='resourceC', value="#{bucketlist.resourceC}")
-              input(type='text', name='resourceUrlC', value='#{bucketlist.resourceUrlC}')
-    br
-    input(type='submit', name='submit', value='submit')
-    a(href='/bucketlists/'+bucketlist.user_id)
+  .topnav
+    .topbar
+      p
+        a(href="/auth/logout") Logout
+    .topbar
+      p
+        a(href="#") Profile
+    .topbar
+      p
+        a(href="#") Chat
+    .topbar
+      p
+        a(href="/bucketlists") Discover
+    h1 Edit List Item
+    form(method='post', action='/bucketlists/#{userId}/items/#{bucketlist.id}')
+      input(type='text', name='title', value='#{bucketlist.title}') 
+      br
+      textarea(name='description') #{bucketlist.description}
+      br
+      input(type='text', name='picture', value='#{bucketlist.picture}')
+      br
+      div.resources
+        if true
+            input(type='text', name='resourceA', value='#{bucketlist.resourceA}')
+            input(type='text', name='resourceUrlA', value='#{bucketlist.resourceUrlA}')
+        if true
+            input(type='text', name='resourceB', value='#{bucketlist.resourceB}')
+            input(type='text', name='resourceUrlB', value='#{bucketlist.resourceUrlB}')
+        if true
+            input(type='text', name='resourceC', value="#{bucketlist.resourceC}")
+            input(type='text', name='resourceUrlC', value='#{bucketlist.resourceUrlC}')
+      br
+      input(type='submit', name='submit', value='submit')
+      a(href='/bucketlists/'+bucketlist.user_id)

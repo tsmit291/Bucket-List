@@ -1,35 +1,83 @@
+//- extends ../layout
+//- 
+//- block content
+//-   header New List Item
+//-   form(method='post', action='/bucketlists/#{userId}/items')
+//-     label(for='title') Title
+//-     input(type='text', name='title') 
+//-     br
+//-     label(for='description') Description
+//-     textarea(name='description')
+//-     br
+//-     label(for=picture) Picture
+//-     input(type='text', name='picture')
+//-     br
+//-     div.resources
+//-       p Resources
+//-         ul
+//-           li
+//-             label(for='resourceA') Title:
+//-             input(type='text', name='resourceA')
+//-             label(for='resourceUrlA') Url:
+//-             input(type='text', name='resourceUrlA')
+//-           li
+//-             label(for='resourceB') Title:
+//-             input(type='text', name='resourceB')
+//-             label(for='resourceUrlB') Url:
+//-             input(type='text', name='resourceUrlB')
+//-           li
+//-             label(for='resourceC') Title:
+//-             input(type='text', name='resourceC')
+//-             label(for='resourceUrlC') Url:
+//-             input(type='text', name='resourceUrlC')
+//-     br
+//-     input(type='submit', name='submit', value='submit')
+//-     input(type='submit', name='cancel', value='cancel')
 extends ../layout
 
 block content
-  header New List Item
-  form(method='post', action='/bucketlists/#{userId}/items')
-    label(for='title') Title
-    input(type='text', name='title') 
-    br
-    label(for='description') Description
-    textarea(name='description')
-    br
-    label(for=picture) Picture
-    input(type='text', name='picture')
-    br
-    div.resources
-      p Resources
-        ul
-          li
-            label(for='resourceA') Title:
-            input(type='text', name='resourceA')
-            label(for='resourceUrlA') Url:
-            input(type='text', name='resourceUrlA')
-          li
-            label(for='resourceB') Title:
-            input(type='text', name='resourceB')
-            label(for='resourceUrlB') Url:
-            input(type='text', name='resourceUrlB')
-          li
-            label(for='resourceC') Title:
-            input(type='text', name='resourceC')
-            label(for='resourceUrlC') Url:
-            input(type='text', name='resourceUrlC')
-    br
-    input(type='submit', name='submit', value='submit')
-    input(type='submit', name='cancel', value='cancel')
+    .topnav
+      .topbar
+        p
+          a(href="/auth/logout") Logout
+      .topbar
+        p
+          a(href="/bucketlists/#{cookieId}") Profile
+      .topbar
+        p
+          a(href="#") Chat
+      .topbar
+        p
+          a(href="/bucketlists") Discover`
+    .createheader
+      h1 Throw it on the bucket list
+    form(method='post', action='/bucketlists/#{userId}/items')
+      .formtitle
+        input(id="formtitle" type="text" placeholder="Title" name="title")
+        br
+        textarea(placeholder="description" name="description")
+        br 
+      .imageside
+        h1 Images
+        .formimages  
+          input(type="text" placeholder="Image URL" name="picture")
+          br
+          input(type="text" placeholder="Image URL")
+          br
+          input(type="text" placeholder="Image URL")
+          br
+      .resourceside
+        h1 Resources
+        .formresources
+          input(type="text" placeholder="resource name" name="resourceA")
+          input(type="text" placeholder="resource url" name="resourceUrlA")
+          br
+          
+          input(type="text" placeholder="resource name" name="resourceB")
+          input(type="text" placeholder="resource url" name="resourceUrlB")
+          br
+          
+          input(type="text" placeholder="resource name" name="resourceC")
+          input(type="text" placeholder="resource url" name="resourceUrlC")
+          br
+      input(type="submit")

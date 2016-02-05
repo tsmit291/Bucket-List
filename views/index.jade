@@ -1,19 +1,53 @@
+//- extends layout
+//- 
+//- block content
+//-   header Bucketlists
+//-   form(action='/bucketlists', method='post')
+//-     input(type='text', name='search')
+//-     input(type='submit', name='submit', value='submit')
+//-   main
+//-     each user in userData  
+//-       div
+//-         p= user.display_name
+//-         img(src='#')
+//-         each bucketlist in bucketlists
+//-           img(src='#')
+//-           if bucketlist.user_id === user.id
+//-             if boldItem.indexOf(bucketlist.id) === -1
+//-               p= bucketlist.title
+//-             else
+//-               b= bucketlist.title  
 extends layout
 
 block content
-  header Bucketlists
-  form(action='/bucketlists', method='post')
-    input(type='text', name='search', placeholder= autoquery?autoquery:undefined)
-    input(type='submit', name='submit', value='submit')
-  main
-    each user in userData  
-      div
-        p= user.display_name
-        img(src='#')
-        each bucketlist in bucketlists
-          img(src='#')
-          if bucketlist.user_id === user.id
-            if boldItem.indexOf(bucketlist.id) === -1
-              p= bucketlist.title
-            else
-              b= bucketlist.title
+  
+  .topnav
+    .logo
+    .topbar
+      p
+        a(href="/auth/logout") Logout
+    .topbar
+      p
+        a(href="/bucketlists/#{cookieId}") Profile
+    .topbar
+      p
+        a(href="/bucketlists/chat") Chat
+    .topbar
+      p
+        a(href="/bucketlists") Discover
+  .search
+    h1 Discover
+    form(action='/bucketlists', method='post')
+      input(type="text" name="search" autofocus placeholder= autoquery?autoquery:undefined)
+      
+  .listarea
+    each user in userData
+      .eachlist
+      
+        h2= user.display_name
+          each bucketlist in bucketlists
+            if bucketlist.user_id === user.id
+              if boldItem.indexOf(bucketlist.id) === -1
+                p= bucketlist.title
+              else
+                h3= bucketlist.title  
