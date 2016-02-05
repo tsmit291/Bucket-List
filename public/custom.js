@@ -50,9 +50,10 @@ function enterChat(chatName){
       console.log("@@@@@@ RECEIVED POST");
       console.log(res);
       var other= res.device.toUpperCase();
-      chatbox.innerHTML= chatbox.innerHTML + other + ': ' + res.payload.msg + '<br/>';
+      chatbox.innerHTML= chatbox.innerHTML + chatName + ': ' + res.payload.msg + '<br/>';
       chatbox.scrollTop= chatbox.scrollHeight;
     });
+}
   function send() {
     var input= document.getElementById("input").value; if(input== "") { return; }
     document.getElementById("input").value= ""; document.getElementById("input").focus();
@@ -63,5 +64,3 @@ function enterChat(chatName){
       console.log(res);
     });
   }
-
-}
