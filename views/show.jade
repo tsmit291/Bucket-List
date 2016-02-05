@@ -35,8 +35,8 @@ block content
   .profilesection
     .naturephoto
 
-        .photo
-      //- (style='background-image: url(http://i54.tinypic.com/4zuxif.jpg)')
+        .photo(style='background-image: url(#{user.picture})')
+        
     .colorsection
         h1 #{user.display_name}
         //- -if (user.bio)
