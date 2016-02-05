@@ -37,35 +37,47 @@ extends ../layout
 
 block content
   .topnav
-  .createheader
-    h1 Throw it on the bucket list
-  form(method='post', action='/bucketlists/#{userId}/items')
-    .formtitle
-      input(id="formtitle" type="text" placeholder="Title" name="title")
-      br
-      textarea(placeholder="description" name="description")
-      br 
-    .imageside
-      h1 Images
-      .formimages  
-        input(type="text" placeholder="Image URL" name="picture")
+    .topbar
+      p
+        a(href="/auth/logout") Logout
+    .topbar
+      p
+        a(href="/bucketlists/#{cookieId}") Profile
+    .topbar
+      p
+        a(href="#") Chat
+    .topbar
+      p
+        a(href="/bucketlists") Discover
+    .createheader
+      h1 Throw it on the bucket list
+    form(method='post', action='/bucketlists/#{userId}/items')
+      .formtitle
+        input(id="formtitle" type="text" placeholder="Title" name="title")
         br
-        input(type="text" placeholder="Image URL")
-        br
-        input(type="text" placeholder="Image URL")
-        br
-    .resourceside
-      h1 Resources
-      .formresources
-        input(type="text" placeholder="resource name" name="resourceA")
-        input(type="text" placeholder="resource url" name="resourceUrlA")
-        br
-        
-        input(type="text" placeholder="resource name" name="resourceB")
-        input(type="text" placeholder="resource url" name="resourceUrlB")
-        br
-        
-        input(type="text" placeholder="resource name" name="resourceC")
-        input(type="text" placeholder="resource url" name="resourceUrlC")
-        br
-    input(type="submit")
+        textarea(placeholder="description" name="description")
+        br 
+      .imageside
+        h1 Images
+        .formimages  
+          input(type="text" placeholder="Image URL" name="picture")
+          br
+          input(type="text" placeholder="Image URL")
+          br
+          input(type="text" placeholder="Image URL")
+          br
+      .resourceside
+        h1 Resources
+        .formresources
+          input(type="text" placeholder="resource name" name="resourceA")
+          input(type="text" placeholder="resource url" name="resourceUrlA")
+          br
+          
+          input(type="text" placeholder="resource name" name="resourceB")
+          input(type="text" placeholder="resource url" name="resourceUrlB")
+          br
+          
+          input(type="text" placeholder="resource name" name="resourceC")
+          input(type="text" placeholder="resource url" name="resourceUrlC")
+          br
+      input(type="submit")
