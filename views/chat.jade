@@ -3,13 +3,18 @@ extends layout
 block content
 
   header Bucketlists
+    title Chat with other members!
+
+  body
+    div#insertName
+      input(type='text' id='userInput' placeholder='Your Name Here')
+      button(type='submit' id='chatName') Enter Chat
+      
+    div#chatbox
+      input#input
+      button(onclick='send()') Send
+
     script(src='https://code.jquery.com/jquery-2.2.0.min.js')
     script(src='../custom.js')
     script(type='text/javascript' src='https://cdn.cloudilly.com/web.min.js')
     script(type='text/javascript' src='/custom.js')
-    title Cloudilly
-
-  body
-    div#chatbox
-      input#input
-      button(onclick='send()') Send
