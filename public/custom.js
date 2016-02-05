@@ -1,5 +1,5 @@
 var app= 'com.bucketlist.app';
-var access='96a14426-9ebb-4024-89da-fcc0610e8549';
+var access='50cca8dd-928d-4e2c-b10f-764e1efb121a';
 var button = document.getElementById('chatName');
 var chatName =
 button.addEventListener('click', function(){
