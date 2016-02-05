@@ -1,20 +1,29 @@
 extends layout
 
 block content
+  -if (notauth)  
+    p You are not authorized to do that.
   div.profile
     header #{user.display_name}'s Bucket List
-    img(src='#{user.picture}')
-    p #{user.bio}
-  div.list
-    for item in user.bucketlist
+    img(src= '#')
+    -if (user.bio)
+      p #{user.bio}
+  div
+    for item in bucketlists
       h2= item.title
-      img(src= item.picture)
+      img(src= '#')
       p= item.description
       p Resources
-      ul
-        li: a(href='item.resourceUrl1') #{item.resource1}
-        li: a(href='item.resourceUrl2') #{item.resource2}
-        li: a(href='item.resourceUrl3') #{item.resource3}
-  //check if there are 10 or less items in list
-  if (user.bucketlist.length < 10)
-    a(href='bucketlists/#{user.id}/new') Add List Item 
+      if item.resourceA
+        a(href= item.resourceUrlA) #{item.resourceA}
+      br
+      if item.resourceB
+        a(href= item.resourceUrlB) #{item.resourceB}
+      br
+      if item.resourceC
+        a(href= item.resourceUrlC) #{item.resourceC}
+      -if (auth)
+        a(href= '/bucketlists/#{user.id}/items/'+item.id+'/edit') Edit
+        a(href= '/bucketlists/#{user.id}/items/'+item.id+'/delete') Delete
+  -if (bucketlists.length < 10 && auth)
+    a(href='/bucketlists/#{user.id}/new') Add List Item 

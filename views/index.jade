@@ -2,6 +2,7 @@ extends layout
 
 block content
   header Bucketlists
+<<<<<<< HEAD
     ///search goes here///
   title Cloudilly
   script(src='https://code.jquery.com/jquery-2.2.0.min.js')
@@ -14,3 +15,20 @@ block content
     div#chatbox
       input#input
       button(onclick='send()') Send
+=======
+  form(action='/bucketlists', method='post')
+    input(type='text', name='search')
+    input(type='submit', name='submit', value='submit')
+  main
+    each user in userData  
+      div
+        p= user.display_name
+        img(src='#')
+        each bucketlist in bucketlists
+          img(src='#')
+          if bucketlist.user_id === user.id
+            if boldItem.indexOf(bucketlist.id) === -1
+              p= bucketlist.title
+            else
+              b= bucketlist.title  
+>>>>>>> 702dee819a69b73c4b821f047a77f650e36a47a6
