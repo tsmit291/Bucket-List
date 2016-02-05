@@ -45,6 +45,11 @@ router.get('/bucketlists', function(req,res){
     })
 })
 
+/* GET chat page */
+router.get('/bucketlists/chat', function(req, res, next){
+  res.render('chat');
+});
+
 //Upon SEARCH
 router.post('/bucketlists', function(req,res,next){
   var search = req.body.search
@@ -68,7 +73,8 @@ router.get('/bucketlists/:userId', function(req, res, next){
       })
     })
   })
-})
+});
+
 ///////////////////////////////MIDDLEWARE////////////////////////////
 
 // router.use(function(req,res,next){
