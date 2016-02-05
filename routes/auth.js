@@ -46,11 +46,19 @@ router.post('/login', function(req, res, next){
 /* sign up */
 router.post('/signup', function(req, res, next){
   var crypted = bcrypt.hashSync(req.body.password, 8)
-  User().insert({email: req.body.email, password: crypted, display_name: req.body.display_name}).then(function(result){
-    res.cookie('user', req.body.email)
-    res.cookie('password', crypted)
-    res.redirect('/bucketlists');
-  });
+  User().where('email', req.body.email).first().then(function(results){
+    console.log(results)
+    if (!results){
+      User().insert({email: req.body.email, password: crypted, display_name: req.body.display_name}).then(function(result){
+        res.cookie('user', req.body.email)
+        res.cookie('password', crypted)
+        res.redirect('/bucketlists');
+      });
+    }else{
+      res.render('login', {taken:true})
+    }
+  })
+
 });
 
 
