@@ -45,9 +45,9 @@ block content
       .eachlist
         a(href='/bucketlists/#{user.id}')
           h2= user.display_name
-        each bucketlist in bucketlists
-          if bucketlist.user_id === user.id
-            if boldItem.indexOf(bucketlist.id) === -1
-              p= bucketlist.title
-            else
-              h3= bucketlist.title  
+          each bucketlist in bucketlists
+            if bucketlist.user_id === user.id
+              if boldItem.indexOf(bucketlist.id) === -1
+                p= bucketlist.title
+              else
+                h3= bucketlist.title  
