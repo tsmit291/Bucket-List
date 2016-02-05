@@ -49,7 +49,7 @@ router.post('/signup', function(req, res, next){
   User().where('email', req.body.email).first().then(function(results){
     console.log(results)
     if (!results){
-      User().insert({email: req.body.email, password: crypted, display_name: req.body.display_name}).then(function(result){
+      User().insert({email: req.body.email, password: crypted, display_name: req.body.display_name, picture:req.body.picture}).then(function(result){
         res.cookie('user', req.body.email)
         res.cookie('password', crypted)
         res.redirect('/bucketlists');
