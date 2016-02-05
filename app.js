@@ -32,16 +32,20 @@ passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
     callbackURL: process.env.HOST + '/auth/facebook/callback',
+    profileFields: ['displayName', 'photos', 'email']
     // don't forget to config your heroku HOST environment variable
   },
   function(accessToken, refreshToken, profile, done) {
+    console.log('PHOTOSOSOSOSOSOSOOSOS');
+    console.log(profile.photos)
     Users().where('fb_id', profile.id).first().then(function(user){
       if(user) {
         done(null, profile);
       } else {
         Users().insert({
           fb_id: profile.id,
-          display_name: profile.displayName
+          display_name: profile.displayName,
+          picture: profile.photos[0].value
         },'id').then(function(user){
           done(null, profile)
         })
