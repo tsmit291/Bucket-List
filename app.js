@@ -1,5 +1,5 @@
 require('dotenv').config()
-var SECRET= '7164ec20-debf-42b4-bad3-55912113b2cb';
+var SECRET= '50cca8dd-928d-4e2c-b10f-764e1efb121a';
 var jwt = require('jsonwebtoken');
 var express = require('express');
 var knex = require('./db/knex');
