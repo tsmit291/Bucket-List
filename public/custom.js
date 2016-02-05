@@ -1,5 +1,5 @@
 var app= 'com.bucketlist.app';
-var access='8f051571-b90c-4768-b550-a827827a6629';
+var access='96a14426-9ebb-4024-89da-fcc0610e8549';
 var button = document.getElementById('chatName');
 var chatName =
 button.addEventListener('click', function(){
@@ -16,7 +16,7 @@ function enterChat(chatName){
     window.cloudilly= new Cloudilly();
     var chatbox= document.getElementById('chatbox');
     cloudilly.initialize(app, access, function(){
-      // chatbox.innerHTML= chatbox.innerHTML + 'Connecting...<br/>';
+      chatbox.innerHTML= chatbox.innerHTML + 'Connecting...<br/>';
       chatbox.scrollTop= chatbox.scrollHeight;
       cloudilly.connect();
     });
