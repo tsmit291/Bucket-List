@@ -43,7 +43,6 @@ passport.use(new FacebookStrategy({
           fb_id: profile.id,
           display_name: profile.displayName
         },'id').then(function(user){
-          console.log(picture);
           done(null, profile)
         })
       }

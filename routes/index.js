@@ -16,6 +16,7 @@ router.get('/',function(req,res,next){
 
 //INDEX
 router.get('/bucketlists', function(req,res){
+  console.log(req.user)
   var search
   var querystring = req.query.search
   var math = Math.floor(Math.random()*15)
