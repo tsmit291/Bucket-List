@@ -43,7 +43,7 @@ function enterChat(chatName){
       console.log("@@@@@@ RECEIVED DEVICE");
       console.log(res);
       var other= res.device.toUpperCase();
-      chatbox.innerHTML= res.timestamp== 0 ? chatbox.innerHTML + chatName + " JOINED PUBLIC<br/>" : chatbox.innerHTML + other + " LEFT PUBLIC<br/>";
+      chatbox.innerHTML= res.timestamp== 0 ? chatbox.innerHTML + chatName + " JOINED PUBLIC<br/>" : chatbox.innerHTML + chatName + " LEFT PUBLIC<br/>";
       chatbox.scrollTop= chatbox.scrollHeight;
     });
     cloudilly.socketReceivedPost(function(res) {
