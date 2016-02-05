@@ -24,6 +24,7 @@ router.get('/logout', function(req, res, next){
 /* route that facebook will call once user has authenticated properly*/
 router.get('/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }),
 function (req, res, next) {
+  res.cookie('facebook', req.user.id)
   res.redirect('/bucketlists');
 });
 
@@ -47,7 +48,6 @@ router.post('/login', function(req, res, next){
 router.post('/signup', function(req, res, next){
   var crypted = bcrypt.hashSync(req.body.password, 8)
   User().where('email', req.body.email).first().then(function(results){
-    console.log(results)
     if (!results){
       User().insert({email: req.body.email, password: crypted, display_name: req.body.display_name, picture:req.body.picture}).then(function(result){
         res.cookie('user', req.body.email)

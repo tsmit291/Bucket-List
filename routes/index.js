@@ -39,9 +39,15 @@ router.get('/bucketlists', function(req,res){
 
         Users().whereIn('id', users).then(function(userData){
           Bucketlist().whereIn('user_id', users).then(function(bucketlists){
-            Users().where('email', req.cookies.user).first().then(function(results){
-              var cookieId = results.id
-              res.render('index', {bucketlists:bucketlists, userData:userData, boldItem:boldItem, cookieId:cookieId, autoquery:autoquery});
+            Users().where('email', req.cookies.user).first().then(function(signin){
+              Users().where('fb_id', req.cookies.facebook).first().then(function(facebook){
+                console.log('*************')
+                console.log(facebook)
+                console.log(signin)
+                var cookieId = signin || facebook
+                var cookieId = cookieId.id
+                res.render('index', {bucketlists:bucketlists, userData:userData, boldItem:boldItem, cookieId:cookieId, autoquery:autoquery});
+              })
             })
           })
         })
@@ -64,17 +70,18 @@ router.post('/bucketlists', function(req,res,next){
 router.get('/bucketlists/:userId', function(req, res, next){
   Users().where('id', req.params.userId).first().then(function(user){
     Bucketlist().where('user_id', req.params.userId).then(function(bucketlists){
-      Users().where('email', req.cookies.user).first().then(function(results){
-        console.log(results.id)
-        console.log(req.params.userId)
-        var auth = false
-        if (results.id == req.params.userId){
-          auth = true;
-        }
-        var obj = bucketlists
-        console.log(auth)
-        res.render('show', {user:user, bucketlists:bucketlists, auth:auth, obj:obj})
+      Users().where('email', req.cookies.user).first().then(function(signin){
+        Users().where('fb_id', req.cookies.facebook).first().then(function(facebook){
 
+          var auth = false
+          var usery = signin || facebook
+          var usery = usery.id
+          if (usery == req.params.userId){
+            auth = true;
+          }
+          var obj = bucketlists
+          res.render('show', {user:user, bucketlists:bucketlists, auth:auth, obj:obj})
+        })
       })
     })
   })
