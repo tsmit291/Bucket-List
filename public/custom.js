@@ -16,7 +16,7 @@ function enterChat(chatName){
     window.cloudilly= new Cloudilly();
     var chatbox= document.getElementById('chatbox');
     cloudilly.initialize(app, access, function(){
-      chatbox.innerHTML= chatbox.innerHTML + 'Connecting...<br/>';
+      // chatbox.innerHTML= chatbox.innerHTML + 'Connecting...<br/>';
       chatbox.scrollTop= chatbox.scrollHeight;
       cloudilly.connect();
     });
@@ -43,14 +43,14 @@ function enterChat(chatName){
       console.log("@@@@@@ RECEIVED DEVICE");
       console.log(res);
       var other= res.device.toUpperCase();
-      chatbox.innerHTML= res.timestamp== 0 ? chatbox.innerHTML + chatName + " JOINED PUBLIC<br/>" : chatbox.innerHTML + chatName + " LEFT PUBLIC<br/>";
+      chatbox.innerHTML= res.timestamp== 0 ? chatbox.innerHTML + res.device + " JOINED PUBLIC<br/>" : chatbox.innerHTML + other + " LEFT PUBLIC<br/>";
       chatbox.scrollTop= chatbox.scrollHeight;
     });
     cloudilly.socketReceivedPost(function(res) {
       console.log("@@@@@@ RECEIVED POST");
       console.log(res);
       var other= res.device.toUpperCase();
-      chatbox.innerHTML= chatbox.innerHTML + chatName + ': ' + res.payload.msg + '<br/>';
+      chatbox.innerHTML= chatbox.innerHTML + res.device + ': ' + res.payload.msg + '<br/>';
       chatbox.scrollTop= chatbox.scrollHeight;
     });
 }
