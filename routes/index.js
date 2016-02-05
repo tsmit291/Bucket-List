@@ -39,7 +39,10 @@ router.get('/bucketlists', function(req,res){
 
         Users().whereIn('id', users).then(function(userData){
           Bucketlist().whereIn('user_id', users).then(function(bucketlists){
-            res.render('index', {bucketlists:bucketlists, userData:userData, boldItem:boldItem, autoquery:autoquery});
+            Users().where('email', req.cookies.user).first().then(function(results){
+              var cookieId = results.id
+              res.render('index', {bucketlists:bucketlists, userData:userData, boldItem:boldItem, cookieId:cookieId, autoquery:autoquery});
+            })
           })
         })
     })
@@ -62,18 +65,26 @@ router.get('/bucketlists/:userId', function(req, res, next){
   Users().where('id', req.params.userId).first().then(function(user){
     Bucketlist().where('user_id', req.params.userId).then(function(bucketlists){
       Users().where('email', req.cookies.user).first().then(function(results){
-
+        console.log(results.id)
+        console.log(req.params.userId)
         var auth = false
         if (results.id == req.params.userId){
           auth = true;
         }
-
-        res.render('show', {user:user, bucketlists:bucketlists, auth:auth})
+        var obj = bucketlists
+        console.log(auth)
+        res.render('show', {user:user, bucketlists:bucketlists, auth:auth, obj:obj})
 
       })
     })
   })
 });
+
+router.post('/bucketlists/:userId/picture', function(req,res,next){
+    User().where('id', req.params.id).update({picture: req.body.picture}).then(function(results){
+      res.redirect('/bucketlists/'+req.params.userId)
+    })
+})
 
 ///////////////////////////////MIDDLEWARE////////////////////////////
 

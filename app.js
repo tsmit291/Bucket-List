@@ -3,6 +3,7 @@ var SECRET= '7164ec20-debf-42b4-bad3-55912113b2cb';
 var jwt = require('jsonwebtoken');
 var express = require('express');
 var knex = require('./db/knex');
+var sass = require('node-sass-middleware')
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -69,6 +70,13 @@ app.post('/tokens', function(req, res){
   res.end(jwt.sign({device: req.body.device}, SECRET, {expiresIn: 86400}))
 });
 app.use(cookieParser());
+app.use(sass({
+  src: __dirname + '/sass',
+  dest: __dirname + '/public/stylesheets',
+  debug: true,
+  outputStyle: 'compressed',
+  prefix: '/stylesheets'
+}))
 app.use(express.static(path.join(__dirname, 'public')));
 
 

@@ -1,6 +1,18 @@
 extends layout
 
 block content
+  .topbar
+    p
+      a(href="/auth/logout") Logout
+  .topbar
+    p
+      a(href="/bucketlists/#{cookieId}") Profile
+  .topbar
+    p
+      a(href="#") Chat
+  .topbar
+    p
+      a(href="/bucketlists") Discover
   header New List Item
   img(src='#{user.picture}')
   form(method='post', action='/bucketlists')

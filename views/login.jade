@@ -1,20 +1,81 @@
+//- div.login
+//-   form(name='login', method='post', action='/auth/login')
+//-     label Have an account? Log In Here
+//-       input(type='text' placeholder='email' name='email')
+//-       input(type='text' placeholder='password' name='password')
+//-       button(type='submit') Sign In
+//-   br
+//-   form(name='signup', method='post', action='/auth/signup')
+//-     label No account? Sign Up Here
+//-       input(type='text' placeholder='FName LName' name='display_name')
+//-       input(type='text' placeholder='email' name='email')
+//-       input(type='text' placeholder='password' name='password')
+//-       button(type='submit') Sign Up
+//-   p OR
+//-   a(href='/auth/facebook') Log in with Facebook
+//-   a(href='/auth/logout') Log out of the app
+
 extends layout
 
 block content
-  div.login
-    form(name='login', method='post', action='/auth/login')
-      label Have an account? Log In Here
-        input(type='text' placeholder='email' name='email')
-        input(type='text' placeholder='password' name='password')
-        button(type='submit') Sign In
-    br
-    form(name='signup', method='post', action='/auth/signup')
-      label No account? Sign Up Here
-        input(type='text' placeholder='FName LName' name='display_name')
-        input(type='text' placeholder='email' name='email')
-        input(type='text' placeholder='password' name='password')
-        button(type='submit') Sign Up
-    p OR
-    a(href='/auth/facebook') Log in with Facebook
-    a(href='/auth/logout') Log out of the app
+
+    .hero
+      h1 Tomorrow isn't guranteed.
+      h2 Make a bucketlist today.
+      .content
+    .landinglist
+      .examplelist
+        .benslist
+          h3 Bens list 
+
+          p this super rad thing
+
+          p this other thing
+
+          p this super rad thing
+
+          p this other thing
+
+          p this super rad thing
+
+          p this other thing
+
+          p this super rad thing
+
+          p this other thing
+
+          p this super rad thing
+
+          p this other thing
+      
+    .bulletpoints
+        h3 What do I do?
+        p Add items to your list
+        p Include photos and resource links.
+        p Get inspired with our 'Discover' feature.
+        
+    .fblogin
+      h1 These will need to be restyled
+      a(href='/auth/facebook') Log in with Facebook
+      a(href='/auth/logout') Log out of the app
+    .reglogin
+      .in
+        form(name='login', method='post', action='/auth/login')
+          h3 Sign In
+          input(type="text" placeholder="david@bowie.com" name='email')
+          input(type="text" placeholder="password" name="password")
+          br
+          input(type="submit")
+      .up
+        form(name='signup', method='post', action='/auth/signup')
+          h3 Sign Up
+          input(type="text" placeholder="Jeff Spicoli" name="display_name")
+          input(type='text' placeholder="Add your photo!" name='picture')
+          input(type="text" placeholder="supbro@chillin.com" name="email")
+          input(type="text" placeholder="password" name="password")
+          br
+          input(type="submit")
+    .b    
+
+
       

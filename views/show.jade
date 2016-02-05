@@ -1,29 +1,100 @@
 extends layout
 
 block content
-  -if (notauth)  
-    p You are not authorized to do that.
-  div.profile
-    header #{user.display_name}'s Bucket List
-    img(src= '#')
-    -if (user.bio)
-      p #{user.bio}
-  div
-    for item in bucketlists
-      h2= item.title
-      img(src= '#')
-      p= item.description
-      p Resources
-      if item.resourceA
-        a(href= item.resourceUrlA) #{item.resourceA}
+  -if (notauth)
+    p Get out of here mofucka
+  .topnav
+    .logo
+    .topbar
+      p
+        a(href="/auth/logout") Logout
+    .topbar
+      p
+        a(href="#") Profile
+    .topbar
+      p
+        a(href="#") Chat
+    .topbar
+      p
+        a(href="/bucketlists") Discover
+  .sidenav
+    .abovelist
+    .list
+      for item in bucketlists  
+        .thing
+          p #{item.title}
+          -if (auth)
+            a(href="/bucketlists/#{user.id}/items/#{item.id}/delete")
+              i.material-icons delete
+            a(href="/bucketlists/#{user.id}/items/#{item.id}/edit")
+              i.material-icons mode_edit 
+    .list 
+      a(href="/bucketlists/#{user.id}/new")
+        i.material-icons add_circle       
+    
+  .profilesection
+    .naturephoto
+
+        .photo(style='background-image: url(#{user.picture})')
+        
+    .colorsection
+        h1 #{user.display_name}
+        //- -if (user.bio)
+        //-   p #{user.bio}
+        
+    
+  
+  
+  each x in obj
+    .content
+      //beside content you need to set an id for scrollspy
+      h1= x.title
+      p= x.description
+      .pic
       br
-      if item.resourceB
-        a(href= item.resourceUrlB) #{item.resourceB}
+      if x.resourceA
+        a(href= x.resourceUrlA) #{x.resourceA}
       br
-      if item.resourceC
-        a(href= item.resourceUrlC) #{item.resourceC}
-      -if (auth)
-        a(href= '/bucketlists/#{user.id}/items/'+item.id+'/edit') Edit
-        a(href= '/bucketlists/#{user.id}/items/'+item.id+'/delete') Delete
-  -if (bucketlists.length < 10 && auth)
-    a(href='/bucketlists/#{user.id}/new') Add List Item 
+      if x.resourceB
+        a(href= x.resourceUrlB) #{x.resourceB}
+      br
+      if x.resourceC
+        a(href= x.resourceUrlC) #{x.resourceC}
+      br
+          
+  
+  
+
+
+//- 
+//- 
+//- 
+//- extends layout
+//- 
+//- block content
+//-   -if (notauth)  
+//-     p You are not authorized to do that.
+//-   div.profile
+//-     header #{user.display_name}'s Bucket List
+//-     img(src= '#')
+//-     -if (user.bio)
+//-       p #{user.bio}
+//-   div
+//-     for item in bucketlists
+//-       h2= item.title
+//-       img(src= '#')
+//-       p= item.description
+//-       p Resources
+//-       if item.resourceA
+//-         a(href= item.resourceUrlA) #{item.resourceA}
+//-       br
+//-       if item.resourceB
+//-         a(href= item.resourceUrlB) #{item.resourceB}
+//-       br
+//-       if item.resourceC
+//-         a(href= item.resourceUrlC) #{item.resourceC}
+//-       -if (auth)
+//-         a(href= '/bucketlists/#{user.id}/items/'+item.id+'/edit') Edit
+//-         a(href= '/bucketlists/#{user.id}/items/'+item.id+'/delete') Delete
+//-   -if (bucketlists.length < 10 && auth)
+//-     a(href='/bucketlists/#{user.id}/new') Add List Item 
