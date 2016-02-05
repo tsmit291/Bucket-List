@@ -1,4 +1,4 @@
-var app= 'https://tranquil-crag-37853.herokuapp.com/';
+var app= 'com.bucketlist.app';
 var access='8f051571-b90c-4768-b550-a827827a6629';
 var button = document.getElementById('chatName');
 var chatName =
