@@ -25,7 +25,6 @@ router.get('/bucketlists', function(req,res){
   }else{
     search= autoquery
   }
-  console.log(search)
 
   knex.raw("select user_id, id from bucketlist where lowertitle like LOWER('%"+search+"%')").then(function(searchUsers){
     var users = []
