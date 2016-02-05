@@ -13,9 +13,6 @@ block content
         a(href="#") Profile
     .topbar
       p
-        a(href="/bucketlists/#{user.id}/new") New
-    .topbar
-      p
         a(href="#") Chat
     .topbar
       p
@@ -26,9 +23,14 @@ block content
       for item in bucketlists  
         .thing
           p #{item.title}
-            -if (auth)
+          -if (auth)
+            a(href="/bucketlists/#{user.id}/items/#{item.id}/delete")
               i.material-icons delete
-              i.material-icons mode_edit        
+            a(href="/bucketlists/#{user.id}/items/#{item.id}/edit")
+              i.material-icons mode_edit 
+    .list 
+      a(href="/bucketlists/#{user.id}/new")
+        i.material-icons add_circle       
     
   .profilesection
     .naturephoto
