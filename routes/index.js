@@ -80,6 +80,12 @@ router.get('/bucketlists/:userId', function(req, res, next){
   })
 });
 
+router.post('/bucketlists/:userId/picture', function(req,res,next){
+    User().where('id', req.params.id).update({picture: req.body.picture}).then(function(results){
+      res.redirect('/bucketlists/'+req.params.userId)
+    })
+})
+
 ///////////////////////////////MIDDLEWARE////////////////////////////
 
 // router.use(function(req,res,next){

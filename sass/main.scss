@@ -104,7 +104,7 @@ body{
 .photo{
   height: 150px;
   width: 150px;
-  background-image: url('https://scontent-dfw1-1.xx.fbcdn.net/hphotos-xtp1/v/t1.0-9/10984983_1607486156132482_1488880556538570600_n.jpg?oh=83d34e52bc3aea9d89673f98984816d8&oe=57296F18');
+  // background-image: url('https://scontent-dfw1-1.xx.fbcdn.net/hphotos-xtp1/v/t1.0-9/10984983_1607486156132482_1488880556538570600_n.jpg?oh=83d34e52bc3aea9d89673f98984816d8&oe=57296F18');
   background-size: cover;
   border-radius: 50%;
   position: absolute;
@@ -347,6 +347,7 @@ input, textarea{
     color: $accent;
     padding-top: 3vh;
   }
+
 }
 
 form{
