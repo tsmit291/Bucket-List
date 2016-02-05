@@ -1,4 +1,6 @@
 require('dotenv').config()
+var SECRET= '7164ec20-debf-42b4-bad3-55912113b2cb';
+var jwt = require('jsonwebtoken');
 var express = require('express');
 var knex = require('./db/knex');
 var sass = require('node-sass-middleware')
@@ -29,7 +31,7 @@ app.use(passport.session());
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: process.env.HOST + '/auth/facebook/callback'
+    callbackURL: process.env.HOST + '/auth/facebook/callback',
     // don't forget to config your heroku HOST environment variable
   },
   function(accessToken, refreshToken, profile, done) {
@@ -41,6 +43,7 @@ passport.use(new FacebookStrategy({
           fb_id: profile.id,
           display_name: profile.displayName
         },'id').then(function(user){
+          console.log(picture);
           done(null, profile)
         })
       }
@@ -62,7 +65,10 @@ passport.deserializeUser(function(id, done){
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.post('/tokens', function(req, res){
+  res.end(jwt.sign({device: req.body.device}, SECRET, {expiresIn: 86400}))
+});
 app.use(cookieParser());
 app.use(sass({
   src: __dirname + '/sass',

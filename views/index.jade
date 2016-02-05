@@ -41,7 +41,7 @@ block content
   .search
     h1 Discover
     form(action='/bucketlists', method='post')
-      input(type="text" name="search" autofocus)
+      input(type="text" name="search" autofocus placeholder= autoquery?autoquery:undefined)
       
   .listarea
     each user in userData

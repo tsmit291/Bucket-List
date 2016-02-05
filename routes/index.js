@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var knex = require('../db/knex')
+var autoqueries = require('../public/javascripts/autoqueries')
 
 function Users(){
   return knex('users')
@@ -17,12 +18,14 @@ router.get('/',function(req,res,next){
 router.get('/bucketlists', function(req,res){
   var search
   var querystring = req.query.search
-
+  var math = Math.floor(Math.random()*15)
+  var autoquery = autoqueries[math]
   if (querystring) {
-    search=querystring
+    search= querystring
   }else{
-    search='Hang Gliding'
+    search= autoquery
   }
+  console.log(search)
 
   knex.raw("select user_id, id from bucketlist where lowertitle like LOWER('%"+search+"%')").then(function(searchUsers){
     var users = []
@@ -40,11 +43,16 @@ router.get('/bucketlists', function(req,res){
             console.log(userData);
             console.log('##################');
             console.log(bucketlists);
-            res.render('index', {bucketlists:bucketlists, userData:userData, boldItem:boldItem});
+            res.render('index', {bucketlists:bucketlists, userData:userData, boldItem:boldItem, autoquery:autoquery});
           })
         })
     })
 })
+
+/* GET chat page */
+router.get('/bucketlists/chat', function(req, res, next){
+  res.render('chat');
+});
 
 //Upon SEARCH
 router.post('/bucketlists', function(req,res,next){
@@ -69,7 +77,8 @@ router.get('/bucketlists/:userId', function(req, res, next){
       })
     })
   })
-})
+});
+
 ///////////////////////////////MIDDLEWARE////////////////////////////
 
 // router.use(function(req,res,next){
