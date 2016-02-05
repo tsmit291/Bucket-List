@@ -41,6 +41,7 @@ window.onload= function() {
         chatbox.innerHTML= chatbox.innerHTML + other + ': ' + res.payload.msg + '<br/>';
         chatbox.scrollTop= chatbox.scrollHeight;
     });
+  };
     function send() {
   	var input= document.getElementById("input").value; if(input== "") { return; }
   	document.getElementById("input").value= ""; document.getElementById("input").focus();
@@ -51,4 +52,3 @@ window.onload= function() {
   		console.log(res);
   	});
   }
-};
