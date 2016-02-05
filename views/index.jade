@@ -3,7 +3,7 @@ extends layout
 block content
   header Bucketlists
   form(action='/bucketlists', method='post')
-    input(type='text', name='search')
+    input(type='text', name='search', placeholder= autoquery?autoquery:undefined)
     input(type='submit', name='submit', value='submit')
   main
     each user in userData  
@@ -16,4 +16,4 @@ block content
             if boldItem.indexOf(bucketlist.id) === -1
               p= bucketlist.title
             else
-              b= bucketlist.title  
+              b= bucketlist.title
