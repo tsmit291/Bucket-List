@@ -24,6 +24,7 @@ router.get('/logout', function(req, res, next){
 /* route that facebook will call once user has authenticated properly*/
 router.get('/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }),
 function (req, res, next) {
+  res.cookie('facebook', req.user.id)
   res.redirect('/bucketlists');
 });
 
