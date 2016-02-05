@@ -19,7 +19,7 @@ block content
     form(method='post', action='/bucketlists/#{userId}/items/#{bucketlist.id}')
       .formtitle
         h1 Title
-        input(type='text', name='title', value='#{bucketlist.title}') 
+        input(type='text', name='title', value='#{bucketlist.title}' ) 
         h1 Description
         textarea(name='description') #{bucketlist.description}
         br
@@ -29,5 +29,5 @@ block content
           .formimages
             input(type='text', name='picture', value='#{bucketlist.picture}')
           br
-      input(type='submit', name='submit', value='submit')
+      input(type='submit', name='submit', value='submit' class="pointer")
       a(href='/bucketlists/'+bucketlist.user_id)

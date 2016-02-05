@@ -394,7 +394,9 @@ form textarea{
   float: left;
 }
 
-
+.pointer:hover{
+  cursor: pointer;
+}
 #formtitle{
   width: 100%;
   margin-bottom: 10px;
