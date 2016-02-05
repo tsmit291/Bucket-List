@@ -30,7 +30,9 @@ app.use(passport.session());
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: process.env.HOST + '/auth/facebook/callback'
+    callbackURL: process.env.HOST + '/auth/facebook/callback',
+    profileFields: ['id', 'displayName', 'photos']
+    // here add the facebook photo api part
     // don't forget to config your heroku HOST environment variable
   },
   function(accessToken, refreshToken, profile, done) {
@@ -40,8 +42,10 @@ passport.use(new FacebookStrategy({
       } else {
         Users().insert({
           fb_id: profile.id,
+          picture: profile.photos,
           display_name: profile.displayName
         },'id').then(function(user){
+          console.log(picture);
           done(null, profile)
         })
       }
