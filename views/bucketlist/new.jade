@@ -36,19 +36,19 @@
 extends ../layout
 
 block content
-  .topnav
-    .topbar
-      p
-        a(href="/auth/logout") Logout
-    .topbar
-      p
-        a(href="/bucketlists/#{cookieId}") Profile
-    .topbar
-      p
-        a(href="#") Chat
-    .topbar
-      p
-        a(href="/bucketlists") Discover
+    .topnav
+      .topbar
+        p
+          a(href="/auth/logout") Logout
+      .topbar
+        p
+          a(href="/bucketlists/#{cookieId}") Profile
+      .topbar
+        p
+          a(href="#") Chat
+      .topbar
+        p
+          a(href="/bucketlists") Discover`
     .createheader
       h1 Throw it on the bucket list
     form(method='post', action='/bucketlists/#{userId}/items')
