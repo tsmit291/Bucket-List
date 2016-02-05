@@ -10,9 +10,6 @@ block content
         a(href="/auth/logout") Logout
     .topbar
       p
-        a(href="#") Profile
-    .topbar
-      p
         a(href="/bucketlists/chat") Chat
     .topbar
       p
@@ -28,9 +25,10 @@ block content
               i.material-icons delete
             a(href="/bucketlists/#{user.id}/items/#{item.id}/edit")
               i.material-icons mode_edit 
-    .list 
-      a(href="/bucketlists/#{user.id}/new")
-        i.material-icons add_circle       
+    -if(auth)
+      .list 
+        a(href="/bucketlists/#{user.id}/new")
+          i.material-icons add_circle       
     
   .profilesection
     .naturephoto
@@ -50,7 +48,7 @@ block content
       //beside content you need to set an id for scrollspy
       h1= x.title
       p= x.description
-      .pic
+      .pic(style='background-image: url(#{x.picture})')
       br
       if x.resourceA
         a(href= x.resourceUrlA) #{x.resourceA}

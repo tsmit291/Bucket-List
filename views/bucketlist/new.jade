@@ -45,7 +45,7 @@ block content
           a(href="/bucketlists/#{cookieId}") Profile
       .topbar
         p
-          a(href="#") Chat
+          a(href="/bucketlists/chat") Chat
       .topbar
         p
           a(href="/bucketlists") Discover`
@@ -53,31 +53,13 @@ block content
       h1 Throw it on the bucket list
     form(method='post', action='/bucketlists/#{userId}/items')
       .formtitle
+        h1 Title
         input(id="formtitle" type="text" placeholder="Title" name="title")
-        br
+        h1 Description
         textarea(placeholder="description" name="description")
         br 
       .imageside
-        h1 Images
+        h1 Image Url
         .formimages  
           input(type="text" placeholder="Image URL" name="picture")
-          br
-          input(type="text" placeholder="Image URL")
-          br
-          input(type="text" placeholder="Image URL")
-          br
-      .resourceside
-        h1 Resources
-        .formresources
-          input(type="text" placeholder="resource name" name="resourceA")
-          input(type="text" placeholder="resource url" name="resourceUrlA")
-          br
-          
-          input(type="text" placeholder="resource name" name="resourceB")
-          input(type="text" placeholder="resource url" name="resourceUrlB")
-          br
-          
-          input(type="text" placeholder="resource name" name="resourceC")
-          input(type="text" placeholder="resource url" name="resourceUrlC")
-          br
       input(type="submit")

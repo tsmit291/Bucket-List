@@ -59,7 +59,7 @@ body{
   }
 }
 .topbar:hover{
-  background-color: white;
+  background-color: $indigo;
 }
 .discover{
   height: 100%;
@@ -171,9 +171,10 @@ i:hover{
 
 }
 .pic{
-  height: 175px;
-  width: 175px;
+  height: 375px;
+  width: 475px;
   background-color: $indigo;
+  background-size: cover;
   display: inline-block;
   margin: 3px;
 }
@@ -307,7 +308,9 @@ input, textarea{
   h3{
     display: inline-block;;
   }
-
+  p:hover{
+    cursor: pointer;
+  }
 }
 
 
