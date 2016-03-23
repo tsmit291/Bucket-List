@@ -1,4 +1,4 @@
-https://tranquil-crag-37853.herokuapp.com/
+http://g18-bucket-list.herokuapp.com/
 
 Bucket List App-
 
